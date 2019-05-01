@@ -32,6 +32,7 @@ namespace LLK
             {
                 for (int j = 1; j <= Width/2; j++)
                 {
+                    if (Ran.Next(0, 10) <2 ) continue;
                     blocks[i,j] = blocks[i,Width-j+1] = Ran.Next(1, TotalImages);
                 }
             }
@@ -120,12 +121,13 @@ namespace LLK
         private bool CanOneLink(int w1, int h1, int w2, int h2, out int aw, out int ah)
         {
             // h2 w1
-            if (CanDirectLink(w1, h1, w1, h2) && CanDirectLink(w2, h2, w1, h2)) {
-                aw = w1;ah = h2;
+            if (blocks[h2, w1] == 0 && CanDirectLink(w1, h1, w1, h2) && CanDirectLink(w2, h2, w1, h2))
+            {
+                aw = w1; ah = h2;
                 return true;
             }
             // h1 w2
-            if (CanDirectLink(w1, h1, w2, h1) && CanDirectLink(w2, h2, w2, h1))
+            if (blocks[h1, w2] == 0 &&  CanDirectLink(w1, h1, w2, h1) && CanDirectLink(w2, h2, w2, h1))
             {
                 aw = w2; ah = h1;
                 return true;

@@ -56,7 +56,7 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(537, 133);
+            this.Start.Location = new System.Drawing.Point(537, 140);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 537);
+            this.ClientSize = new System.Drawing.Size(687, 537);
             this.Controls.Add(this.Pause);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.Tip);
