@@ -32,11 +32,12 @@
             this.Tip = new System.Windows.Forms.Button();
             this.Start = new System.Windows.Forms.Button();
             this.Pause = new System.Windows.Forms.Button();
-            this.TimeBar = new System.Windows.Forms.ProgressBar();
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.Score = new System.Windows.Forms.Label();
-            this.Time = new System.Windows.Forms.Label();
-            this.TimeLeft = new System.Windows.Forms.Label();
+            this.Combo = new System.Windows.Forms.Label();
+            this.ComboLabel = new System.Windows.Forms.Label();
+            this.CountDown = new System.Windows.Forms.Label();
+            this.MessUp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GameBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             // 
             // Tip
             // 
-            this.Tip.Location = new System.Drawing.Point(515, 56);
+            this.Tip.Location = new System.Drawing.Point(520, 198);
             this.Tip.Name = "Tip";
             this.Tip.Size = new System.Drawing.Size(75, 23);
             this.Tip.TabIndex = 1;
@@ -62,7 +63,7 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(515, 140);
+            this.Start.Location = new System.Drawing.Point(520, 30);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 2;
@@ -72,7 +73,7 @@
             // 
             // Pause
             // 
-            this.Pause.Location = new System.Drawing.Point(515, 223);
+            this.Pause.Location = new System.Drawing.Point(520, 114);
             this.Pause.Name = "Pause";
             this.Pause.Size = new System.Drawing.Size(75, 23);
             this.Pause.TabIndex = 3;
@@ -80,17 +81,10 @@
             this.Pause.UseVisualStyleBackColor = true;
             this.Pause.Click += new System.EventHandler(this.Pause_Click);
             // 
-            // TimeBar
-            // 
-            this.TimeBar.Location = new System.Drawing.Point(60, 512);
-            this.TimeBar.Name = "TimeBar";
-            this.TimeBar.Size = new System.Drawing.Size(530, 23);
-            this.TimeBar.TabIndex = 4;
-            // 
             // ScoreLabel
             // 
             this.ScoreLabel.AutoSize = true;
-            this.ScoreLabel.Location = new System.Drawing.Point(509, 367);
+            this.ScoreLabel.Location = new System.Drawing.Point(509, 442);
             this.ScoreLabel.Name = "ScoreLabel";
             this.ScoreLabel.Size = new System.Drawing.Size(43, 13);
             this.ScoreLabel.TabIndex = 5;
@@ -99,40 +93,66 @@
             // Score
             // 
             this.Score.AutoSize = true;
-            this.Score.Location = new System.Drawing.Point(577, 367);
+            this.Score.Location = new System.Drawing.Point(568, 442);
             this.Score.Name = "Score";
             this.Score.Size = new System.Drawing.Size(13, 13);
             this.Score.TabIndex = 6;
             this.Score.Text = "0";
+            this.Score.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Time
+            // Combo
             // 
-            this.Time.AutoSize = true;
-            this.Time.Location = new System.Drawing.Point(577, 417);
-            this.Time.Name = "Time";
-            this.Time.Size = new System.Drawing.Size(13, 13);
-            this.Time.TabIndex = 8;
-            this.Time.Text = "0";
+            this.Combo.AutoSize = true;
+            this.Combo.Location = new System.Drawing.Point(568, 467);
+            this.Combo.Name = "Combo";
+            this.Combo.Size = new System.Drawing.Size(13, 13);
+            this.Combo.TabIndex = 10;
+            this.Combo.Text = "0";
+            this.Combo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // TimeLeft
+            // ComboLabel
             // 
-            this.TimeLeft.AutoSize = true;
-            this.TimeLeft.Location = new System.Drawing.Point(485, 417);
-            this.TimeLeft.Name = "TimeLeft";
-            this.TimeLeft.Size = new System.Drawing.Size(67, 13);
-            this.TimeLeft.TabIndex = 7;
-            this.TimeLeft.Text = "剩余时间：";
+            this.ComboLabel.AutoSize = true;
+            this.ComboLabel.Location = new System.Drawing.Point(509, 467);
+            this.ComboLabel.Name = "ComboLabel";
+            this.ComboLabel.Size = new System.Drawing.Size(43, 13);
+            this.ComboLabel.TabIndex = 9;
+            this.ComboLabel.Text = "连击：";
+            // 
+            // CountDown
+            // 
+            this.CountDown.AutoSize = true;
+            this.CountDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountDown.ForeColor = System.Drawing.Color.Red;
+            this.CountDown.Location = new System.Drawing.Point(515, 352);
+            this.CountDown.Name = "CountDown";
+            this.CountDown.Size = new System.Drawing.Size(80, 55);
+            this.CountDown.TabIndex = 11;
+            this.CountDown.Text = "60";
+            this.CountDown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // MessUp
+            // 
+            this.MessUp.Location = new System.Drawing.Point(520, 282);
+            this.MessUp.Name = "MessUp";
+            this.MessUp.Size = new System.Drawing.Size(75, 23);
+            this.MessUp.TabIndex = 12;
+            this.MessUp.Text = "打乱";
+            this.MessUp.UseVisualStyleBackColor = true;
+            this.MessUp.Click += new System.EventHandler(this.MessUp_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 573);
-            this.Controls.Add(this.Time);
-            this.Controls.Add(this.TimeLeft);
+            this.BackgroundImage = global::LLK.Images.Loading;
+            this.ClientSize = new System.Drawing.Size(643, 529);
+            this.Controls.Add(this.MessUp);
+            this.Controls.Add(this.CountDown);
+            this.Controls.Add(this.Combo);
+            this.Controls.Add(this.ComboLabel);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.ScoreLabel);
-            this.Controls.Add(this.TimeBar);
             this.Controls.Add(this.Pause);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.Tip);
@@ -151,11 +171,12 @@
         private System.Windows.Forms.Button Tip;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Button Pause;
-        private System.Windows.Forms.ProgressBar TimeBar;
         private System.Windows.Forms.Label ScoreLabel;
         private System.Windows.Forms.Label Score;
-        private System.Windows.Forms.Label Time;
-        private System.Windows.Forms.Label TimeLeft;
+        private System.Windows.Forms.Label Combo;
+        private System.Windows.Forms.Label ComboLabel;
+        private System.Windows.Forms.Label CountDown;
+        private System.Windows.Forms.Button MessUp;
     }
 }
 

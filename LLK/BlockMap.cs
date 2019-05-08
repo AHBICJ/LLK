@@ -13,6 +13,7 @@ namespace LLK
         public const int Height = 12;
         public const int TotalBlocks = Width* Height;
         const int TotalImages = 39; // 图样总数
+        public int BlockNum { get; set; }
         Block[,] blocks;              // 对应当前连连看布局
         public int this[int h,int w] { get =>blocks[h, w].Type; set =>blocks[h, w].Type=value; }
         public BlockMap()
@@ -27,14 +28,19 @@ namespace LLK
         /// </summary>
         private void InitBlocks()
         {
-            Random Ran = new Random(DateTime.Now.Millisecond);
+            BlockNum=0;
+            Random Ran = new Random();
             for (int h = 0; h <= Height + 1; h++)
                 for (int w = 0; w <= Width + 1; w++)
                     blocks[h, w] = new Block(w, h);
 
             for (int h = 1; h <= Height; h++)
                 for (int w = 1; w <= Width / 2; w++)
-                    if (Ran.Next(0, 10) > 1) blocks[h, w].Type = blocks[h, Width - w + 1].Type = Ran.Next(TotalImages) + 1;
+                    if (Ran.Next(0, 10) > 1)
+                    {
+                        blocks[h, w].Type = blocks[h, Width - w + 1].Type = Ran.Next(TotalImages) + 1;
+                        BlockNum += 2;
+                    }
         }
 
         /// <summary>
@@ -42,14 +48,14 @@ namespace LLK
         /// </summary>
         internal void MessUp()
         {
-            Random Ran = new Random(DateTime.Now.Millisecond);
+            Random Ran = new Random();
             int times = Width * Height * 4;
             for (int i = 0; i < times; i++)
             {
                 int a = 0;
-                while (blocks[a / Width + 1, a % Width + 1].Type == 0) a = Ran.Next(1, TotalBlocks);
+                while (blocks[a / Width + 1, a % Width + 1].Type == 0) a = Ran.Next(TotalBlocks);
                 int b = 0;
-                while (blocks[b / Width + 1, b % Width + 1].Type == 0 || a==b) b = Ran.Next(1, TotalBlocks);
+                while (blocks[b / Width + 1, b % Width + 1].Type == 0 || a==b) b = Ran.Next(TotalBlocks);
                 int t = blocks[a / Width + 1, a % Width + 1].Type;
                 blocks[a / Width + 1, a % Width + 1].Type = blocks[b / Width + 1, b % Width + 1].Type;
                 blocks[b / Width + 1, b % Width + 1].Type = t;
@@ -77,10 +83,8 @@ namespace LLK
             // 优化遍历思路 分四个方向 这样保证靠近方块
             // 向上
             aw = w1;
-            for (ah = h1-1; ah >= 0; ah--)
-            {
-                if (blocks[ah, aw].Type == 0)
-                {
+            for (ah = h1-1; ah >= 0; ah--){
+                if (blocks[ah, aw].Type == 0){
                     if (CanOneLink(aw, ah, w2, h2, out bw, out bh)) return true;
                 }else break;
             }
